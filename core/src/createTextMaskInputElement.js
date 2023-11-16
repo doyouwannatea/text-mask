@@ -174,13 +174,25 @@ export default function createTextMaskInputElement(config) {
 }
 
 function safeSetSelection(element, selectionPosition) {
-  if (document.activeElement === element) {
+  if (findActiveElement() === element) {
     if (isAndroid) {
       defer(() => element.setSelectionRange(selectionPosition, selectionPosition, strNone), 0)
     } else {
       element.setSelectionRange(selectionPosition, selectionPosition, strNone)
     }
   }
+}
+
+function findActiveElement() {
+  let activeElement = document.activeElement;
+  while (
+    activeElement &&
+    activeElement.shadowRoot &&
+    activeElement.shadowRoot.activeElement
+  ) {
+    activeElement = activeElement.shadowRoot.activeElement;
+  }
+  return activeElement;
 }
 
 function getSafeRawValue(inputValue) {

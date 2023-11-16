@@ -1,5 +1,5 @@
 {
-  "name": "text-mask-all",
+  "name": "text-mask-all-shadow-dom-fixed",
   "version": "1.7.198",
   "description": "Conforms string to given mask or pattern, and can be hooked up to input element",
   "main": "index.js",
